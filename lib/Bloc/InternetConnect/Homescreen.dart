@@ -1,3 +1,4 @@
+import 'package:firebaserelateed/Bloc/Cubit/Internetconnectwithcubit.dart';
 import 'package:firebaserelateed/Bloc/InternetConnect/InternetBloc/InternetBloc.dart';
 import 'package:firebaserelateed/Bloc/InternetConnect/State/InternetState.dart';
 import 'package:flutter/material.dart';
@@ -17,23 +18,23 @@ class _HomescreenState extends State<Homescreen> {
       child: Scaffold(
         body: Column(
           children: [
-            BlocConsumer<InternetBloc,InternetState>(
+            BlocConsumer<InternetCubit,internetState>(
               builder: (context, state) {
-                        if(state is InternetGainState){
+                        if(state==internetState.Gain){
             return Text("Connected");
                         }
-                        else if(state is InternetLostState) {
+                        else if(state==internetState.Lost) {
             return Text("Loading");
                         }
                         else{
             return Text("Loading...");
                         }}, listener: (context, state) {
-              if(state is InternetGainState){
+              if(state == internetState.Gain){
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Internet Connected") ,
                 backgroundColor: Colors.green,
                 ));
               }
-              else if(state is InternetLostState) {
+              else if(state == internetState.Lost) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Internet Lost"),
                 backgroundColor: Colors.red,
                 ));

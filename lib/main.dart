@@ -1,7 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebaserelateed/Bloc/Cubit/Internetconnectwithcubit.dart';
+import 'package:firebaserelateed/Bloc/EmailAuthentication/HomeEmailAuththentication.dart';
 import 'package:firebaserelateed/Bloc/InternetConnect/Homescreen.dart';
 import 'package:firebaserelateed/Bloc/InternetConnect/InternetBloc/InternetBloc.dart';
+import 'package:firebaserelateed/Firebase/Database/Get/getdata.dart';
+import 'package:firebaserelateed/Firebase/Database/Post/Postdata.dart';
 import 'package:firebaserelateed/Firebase/Emailwithlogin/EmailWithLogin.dart';
+import 'package:firebaserelateed/Firebase/GoogleSignin/GoogleSignIn.dart';
+import 'package:firebaserelateed/Firebase/GoogleSignin/Profile%20Screen.dart';
 import 'dart:io' show Platform;
 import 'package:firebaserelateed/Userinfo.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +39,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
 
-      create: (context) => InternetBloc(),
+      create: (context) => InternetCubit(),
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
@@ -56,7 +62,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:Homescreen(),
+        home:GoogleSign(),
       ),
     );
   }
